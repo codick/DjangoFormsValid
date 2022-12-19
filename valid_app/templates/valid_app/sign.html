@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="{% static 'valid_app/css/style.css' %}">
+</head>
+<body>
+    <div class="wrap">
+        <h1 class="title">Вход</h1>
+        <h2 class="subtitle">Войти в учетную запись</h2>
+        <form action="" method="post" class="form" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+                {% endif %}
+            {% endfor %}
+            <button class="button" type="submit">Войти</button>
+        </form>
+            <a href="{% url 'index' %}">Регистрация</a>
+    </div>
+</body>
+</html>
